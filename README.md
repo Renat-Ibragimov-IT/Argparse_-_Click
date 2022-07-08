@@ -25,3 +25,10 @@ Also, custom errors were created to show IATACodeError if incorrect IATA code
 format will be entered, MultipleOptionsError if more than one argument 
 received, etc.
 
+This is the CLI script, so we can call this program using terminal.
+To call script just enter python3 Click_test_task.py or 
+python3 Argparse_test_task.py following by argument. 
+For example: python3 Click_test_task.py -n Odessa, 
+or python3 Argparse_test_task.py -ic ODS.
+
+List available arguments we can check using "--help" option.
