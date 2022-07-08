@@ -145,7 +145,7 @@ class AirportSearch:
 
     def find_iata_code(self):
         """This function will only be called if an IATA code argument is
-        received. It will return all rows from CSV file containing requested
+        received. It will return all row from CSV file containing requested
         IATA code. AirportNotFoundError will be raised in case IATA Code will
         not be found in the CSV file"""
         for row in self.extract_info():
@@ -169,7 +169,10 @@ class AirportSearch:
     def find_name(self):
         """This function will only be called if an airport name argument is
         received. It will return all rows from CSV file containing requested
-        airport name. AirportNotFoundError will be raised in case airport name
+        airport name, even if the requested name is only part of a full name.
+        For example if entered argument is "liman", function will return also
+        "Ilimanaq Heliport", "Sidi Slimane Airport", "Kilimanjaro International
+        Airport", etc. NotFoundError will be raised in case airport name
         will not be found in the CSV file"""
         list_of_names = []
         for row in self.extract_info():
