@@ -1,5 +1,5 @@
 # Argparse_-_Click
-A test task aimed at understanding the basic principles of working with the 
+A test task aimed at understanding the basic principles of work with the 
 Argparse and Click.
 
 # Details
