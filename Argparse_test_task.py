@@ -1,32 +1,3 @@
-# Во вложении файл csv с данными про аэропорты мира, написать программу которая
-# сможет вернуть данные по таким параметрам:
-#
-# --iata_code - код аэропорта, должно вернуть 1 запись по коду
-# аэропорта(всю строку) или вернуть ошибку AirportNotFoundError
-# --country - страна, должно вернуть все записи по аэропортам или
-# CountryNotFoundError
-# --name - значение имени аэропорта, допустимо вхождение строки хотябы
-# минимально, т.е. liman должен вернуть строки с такими названиями:
-# Ilimanaq Heliport
-# Sidi Slimane Airport
-# Kilimanjaro International Airport
-# West Kilimanjaro Airport
-# Limanske Airfield
-# Liman Airfield
-# ...
-# или AirportNotFoundError
-#
-# Только один параметр обязателен, если выбрано несколько - вернуть
-# ошибку:
-# MultipleOptionsError, если ни одного - NoOptionsFoundError
-# ** доп. ошибки принимают два аргумента, текст ошибки и входные данные,
-#
-# пример:
-#
-# AirportNotFoundError: ('Airport not found', 'OESD')
-# CountryNotFoundError: ('Country not found', 'UGUGU')
-# IATA код может быть только 3х буквенным в верхнем регистре, сделать валидацию
-# на него или вернуть IATACodeError
 import argparse
 import csv
 import re
@@ -35,6 +6,7 @@ import re
 class NoOptionsFoundError(Exception):
     """This error will be raised in case no argument received during
     program call"""
+
     def __init__(self):
         self.txt = "One argument required."
 
@@ -45,6 +17,7 @@ class NoOptionsFoundError(Exception):
 class MultipleOptionsError(Exception):
     """This error will be raised in case more than one argument received during
        program call"""
+
     def __init__(self, num):
         self.txt = f'{num} arguments entered. Only one argument required.'
 
@@ -55,6 +28,7 @@ class MultipleOptionsError(Exception):
 class IATACodeError(Exception):
     """This error will be raised in case of incorrect IATA code format will be
     entered during program call"""
+
     def __init__(self, iata_code):
         self.txt = f'"{iata_code}" is incorrect format. Should be three ' \
                    f'capital letters.'
@@ -66,6 +40,7 @@ class IATACodeError(Exception):
 class AirportNotFoundError(Exception):
     """This error will be raised in case airport name or IATA Code will not be
     found in the CSV file"""
+
     def __init__(self, parameter):
         self.txt = f'"{parameter}", Airport not found'
 
@@ -76,6 +51,7 @@ class AirportNotFoundError(Exception):
 class CountryNotFoundError(Exception):
     """This error will be raised in case country name will not be found in
     the CSV file"""
+
     def __init__(self, country):
         self.txt = f'"{country}", Country not found'
 
@@ -110,6 +86,7 @@ def iata_code_validation():
 class AirportSearch:
     """Class for searching of required airports in CSV file. Depending on the
     received argument, the required function will be called."""
+
     def __init__(self):
         self.iata_code = args.iata_code
         self.country = args.country
@@ -144,9 +121,9 @@ class AirportSearch:
         raise AirportNotFoundError(self.iata_code)
 
     def find_country(self):
-        """This function will only be called if an Country argument is
+        """This function will only be called if a Country argument is
         received. It will return all rows from CSV file containing requested
-        country name. CountryNotFoundError will be raised in case contry will
+        country name. CountryNotFoundError will be raised in case country will
         not be found in the CSV file"""
         airports_in_country = []
         for row in self.extract_info():
