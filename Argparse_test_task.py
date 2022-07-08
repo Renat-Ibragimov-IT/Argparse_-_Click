@@ -174,7 +174,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Airport search")
     parser.add_argument('-ic', '--iata_code', help="Three capital letters")
     parser.add_argument('-c', '--country', help="Format US, UA, CA etc")
-    parser.add_argument('-n', '--name')
+    parser.add_argument('-n', '--name', help="Airport name to search")
     args = parser.parse_args()
     check_args_quantity()
     iata_code_validation()
